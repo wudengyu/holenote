@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="common_header(title,links)">
+    <title th:replace="${title}">Example Maven Webapp</title>
+    <!-- Common styles and scripts -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.2.css}">
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}" />
+
+</head>
+
+<body>
+    <footer th:fragment="footer">
+        <script th:src="@{/js/bootstrap-5.0.2.js}"></script>
+    </footer>
+</body>
+
+</html>

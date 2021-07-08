@@ -23,11 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authenticationProvider(loginAuthenticationProvider())
             .authorizeRequests()
+                .antMatchers("/images/**","/css/**","/js/**")
+                .permitAll()
                 .anyRequest()
                     .authenticated()
                     //.permitAll()
                     .and()
                 .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
         ;
     }
 
