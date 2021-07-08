@@ -2,6 +2,7 @@ package holenote;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import holenote.business.BusinessConfig;
 import holenote.security.SecurityConfig;
 import holenote.web.WebConfig;
 
@@ -9,7 +10,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { SecurityConfig.class };
+		return new Class<?>[] { BusinessConfig.class, SecurityConfig.class };
 	}
 
 	@Override
