@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+
+<head th:replace="base :: common_header(~{::title},_)">
+    <title>组织管理</title>
+</head>
+
+<body>
+    <header th:replace="~{base::header}"></header>
+    <div class="container">
+        <h2>组织添加</h2>
+        <form name="delete" method="POST" th:action="@{/manage/organization/create}" th:object="${organization}">
+            <input type="hidden" name="pageNum" th:value="${pageNum}">
+            <input type="hidden" name="pageSize" th:value="${pageSize}">
+            <input type="hidden" th:field="*{id}">
+            <input type="text" th:field="*{name}">
+            <a class="btn btn-outline-dark me-3" th:href="@{'/manage/organization?pageNum='+${pageNum}+'&pageSize='+${pageSize}}">返回</a>
+            <button class="btn btn-outline-dark me-3">保存</button>
+        </form>
+    </div>
+    <footer th:replace="~{base::footer}"></footer>
+</body>
+
+</html>
