@@ -54,6 +54,17 @@ insert into organization (id,name) values(91,'扶贫开发办公室');
 insert into organization (id,name) values(92,'生态移民局');
 insert into organization (id,name) values(93,'林业局');
 
-insert into users (id,username,password,enabled) values(1,'admin','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(1,'admin','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110000',1,'系统管理员','12345678910',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(2,'zs','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(3,'we','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110102',17,'王二','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(4,'zs4','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110105',17,'张三4','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(5,'zs5','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三5','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(6,'zs6','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三6','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(7,'zs7','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三7','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(8,'zs8','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三8','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(9,'zs9','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三9','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(10,'zs10','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三20','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(11,'zs11','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三22','13885000001',1);
+insert into users (id,username,password,district_code,organization_id,realname,telephone,enabled) values(122,'zs12','$2a$10$Fkz3FaPhMNlS8yMbmS/yOuIuGfkz7Ix1UYgBOSd5IcXdhQKlAWgIG','110101',17,'张三24','13885000001',1);
 
 insert into authorities (username,authority) values('admin','admin');

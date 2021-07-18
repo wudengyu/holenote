@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +28,12 @@ public class User implements Serializable{
     private Long id;
     private String username;
     private String password;
+    @ManyToOne
+    private District district;
+    @ManyToOne
+    private Organization organization;
+    private String realname;
+    private String telephone;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="authorities",joinColumns = @JoinColumn(name="username",referencedColumnName = "username"))
     @Column(name="authority")
@@ -53,12 +60,36 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public District getDistrict() {
+        return district;
     }
 
-    public void setEnable(boolean enable) {
-        this.enabled = enable;
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -70,6 +101,14 @@ public class User implements Serializable{
             auth.add(new SimpleGrantedAuthority("user"));
         }
         return auth;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enabled = enable;
     }
    
 }

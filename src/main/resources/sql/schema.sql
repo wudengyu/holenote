@@ -14,6 +14,10 @@ create table if not exists users(
     id int not null auto_increment unique,
     username varchar(20) not null unique,
     password varchar(120) not null,
+    district_code char(6),
+    organization_id int,
+    realname varchar(20) not null,
+    telephone char(11),
     enabled tinyint default 0,
     primary key(id)
 );

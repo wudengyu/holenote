@@ -15,6 +15,10 @@ public class Organization{
 
     public Organization(){};
 
+    public Organization(int id){
+        this.id=Long.valueOf((long)id);
+    }
+
     public Long getId() {
         return id;
     }

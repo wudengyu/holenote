@@ -10,6 +10,12 @@ public class District {
     private String name;
     private boolean enabled=false;
 
+    public District(){}
+
+    public District(String code){
+        this.code=code;
+    }
+
     public String getCode() {
         return code;
     }

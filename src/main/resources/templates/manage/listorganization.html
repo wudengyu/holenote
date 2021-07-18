@@ -7,7 +7,6 @@
 
 <body>
     <header th:replace="~{base::header}"></header>
-    <script th:src="@{/js/bootstrap-5.0.2.bundle.js}"></script>
     <div class="container">
         <h2>组织维护</h2>
         <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${message}">
@@ -26,37 +25,37 @@
         <ul class="pagination justify-content-end">
             <!-- 首页 -->
             <li class="page-item">
-                <a class="page-link" th:href="@{/manage/organization?pageNum=0}">首页</a>
+                <a class="page-link" th:href="@{/manage/organization?page=0}">首页</a>
             </li>
             <!-- 上一页 -->
             <li class="page-item" th:if="${organizations.hasPrevious()}">
                 <a class="page-link"
-                    th:href="@{'/manage/organization?pageNum=' + ${organizations.previousPageable().getPageNumber()}}"
+                    th:href="@{'/manage/organization?page=' + ${organizations.previousPageable().getPageNumber()}}"
                     th:text="上一页"></a>
             </li>
             <!-- 中间页 -->
             <li class="page-item" th:each="pageNum:${#numbers.sequence(0, organizations.getTotalPages() - 1)}"
                 th:classappend="${pageNum eq organizations.pageable.getPageNumber()}?'active'">
-                <a class="page-link" th:href="@{'/manage/organization?pageNum=' + ${pageNum}}"
+                <a class="page-link" th:href="@{'/manage/organization?page=' + ${pageNum}}"
                     th:text="${pageNum + 1}"></a>
             </li>
             <!-- 下一页 -->
             <li class="page-item" th:if="${organizations.hasNext()}">
                 <a class="page-link"
-                    th:href="@{'/manage/organization?pageNum=' + ${organizations.nextPageable().getPageNumber()}}"
+                    th:href="@{'/manage/organization?page=' + ${organizations.nextPageable().getPageNumber()}}"
                     th:text="下一页"></a>
             </li>
             <!-- 尾页 -->
             <li class="page-item">
                 <a class="page-link"
-                    th:href="@{'/manage/organization?pageNum=' + ${organizations.getTotalPages() - 1}}">尾页</a>
+                    th:href="@{'/manage/organization?page=' + ${organizations.getTotalPages() - 1}}">尾页</a>
             </li>
         </ul>
         <form name="delete" method="POST" th:action="@{/manage/organization/delete}">
-            <input type="hidden" name="pageNum" th:value="${organizations.pageable.getPageNumber()}">
+            <input type="hidden" name="page" th:value="${organizations.pageable.getPageNumber()}">
             <input type="hidden" name="selectId" value="-1">
             <a class="btn btn-outline-dark me-3"
-                th:href="@{'/manage/organization/add?pageNum='+${organizations.pageable.getPageNumber()}+'&pageSize='+${organizations.pageable.getPageSize()}}">添加</a>
+                th:href="@{'/manage/organization/add?page='+${organizations.pageable.getPageNumber()}+'&size='+${organizations.pageable.getPageSize()}}">添加</a>
             <button id="edit" class="btn btn-outline-dark me-3" th:formaction="@{/manage/organization/edit}"
                 disabled>修改</button>
             <button id="delete" class="btn btn-outline-dark me-3" disabled>删除</button>

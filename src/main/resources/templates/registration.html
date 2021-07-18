@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base :: common_header(~{::title},_)">
+    <title>用户注册</title>
+</head>
+
+<body>
+    <header th:replace="~{base::header}"></header>
+    <div class="container">
+        <form class="form" method="POST" th:action="@{/registration}" th:object="${registrationForm}" >
+            <table>
+                <thead>
+                    <h2>用户注册</h2>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <ul th:if="${#fields.hasErrors('*')}" style="color: red;">
+                                <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="username" class="sr-only">用户名</label></td>
+                        <td>
+                            <input type="text" id="username" th:field="*{username}" class="form-control" placeholder="用户名" required
+                    autofocus>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="password" class="sr-only">密码</label>
+                        </td>
+                        <td>
+                            <input type="password" id="password" th:field="*{originalpassword}" class="form-control" placeholder="密码" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="district" class="sr-only">行政区域</label>
+                        </td>
+                        <td>
+                            <select th:field="*{district_code}" required>
+                                <option th:each="district:${districtList}"
+                                    th:value="${district.code}"
+                                    th:text="${district.name}">
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="organization" class="sr-only">单位</label>
+                        </td>
+                        <td>
+                            <select th:field="*{organization_id}" required>
+                                <option th:each="organization:${organizationList}"
+                                    th:value="${organization.id}"
+                                    th:text="${organization.name}">
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="realname" class="sr-only">真实姓名</label>
+                        </td>
+                        <td>
+                            <input type="text" id="realname" th:field="*{realname}" required></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="telephone" class="sr-only">电话号码</label>
+                        </td>
+                        <td>
+                            <input type="tel" id="telephone" th:field="*{telephone}" required></input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-primary btn-block" value="submit">提交</button>
+            <a th:href="@{/}">返回主页</a>
+        </form>
+    </div>
+    <footer th:replace="~{base::footer}"></footer>
+</body>
+
+</html>
