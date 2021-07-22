@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Conventions;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import holenote.business.entities.District;
 import holenote.business.entities.Organization;
@@ -28,6 +28,7 @@ import holenote.business.form.QueryUserForm;
 
 @Controller
 @RequestMapping("/manage/user")
+@SessionAttributes("queryform")
 public class UserManageController {
 
     @Autowired
@@ -49,12 +50,12 @@ public class UserManageController {
 
     @GetMapping
     public String showqueryuserform(Model model) {
-        model.addAttribute(new QueryUserForm());
+        model.addAttribute("queryform",new QueryUserForm());
         return "manage/usermanage";
     }
 
     @PostMapping
-    public String listuser(QueryUserForm queryparam,@PageableDefault(size=10) Pageable pageable,Model model) {
+    public String listuser(QueryUserForm queryparam,@PageableDefault(page=0,size=10) Pageable pageable,Model model) {
         Page<User> users = userRepository.findAll((root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<Predicate>();
             if (!queryparam.getUsername().isEmpty()) {
@@ -69,6 +70,7 @@ public class UserManageController {
             }
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         },pageable);
+        model.addAttribute("queryform",queryparam);
         model.addAttribute("users",users);
         return "manage/usermanage";
     }
