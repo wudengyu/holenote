@@ -1,4 +1,4 @@
-package holenote.web.controller;
+package holenote.web.controller.manage;
 
 import java.util.List;
 
