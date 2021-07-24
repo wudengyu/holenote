@@ -24,7 +24,6 @@ public class UserDaoTest {
     public void setUp() {
         ctx = new AnnotationConfigApplicationContext(BusinessConfig.class);
         userRepository = ctx.getBean(UserRepository.class);
-        assertNotNull(userRepository);
     }
 
     @Test
@@ -33,5 +32,14 @@ public class UserDaoTest {
         assertNotNull(user);
         logger.info(user.getUsername());
     }
+
+    @Test
+    public void testUpdate(){
+        User user=userRepository.findById(Long.valueOf(2)).get();
+        user.setEnable(!user.isEnabled());
+        userRepository.save(user);
+    }
+
+
 
 }

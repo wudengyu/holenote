@@ -2,12 +2,12 @@ package holenote.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +37,8 @@ public class UserManageController {
     private OrganizationRepository organizationRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @ModelAttribute
     public List<District> districts() {
@@ -74,9 +76,32 @@ public class UserManageController {
         model.addAttribute("users",users);
         return "manage/usermanage";
     }
-    @PostMapping(path="reset",params="userid")
+
+    @PostMapping(path="switch",params={"userid"})
     @ResponseBody
-    public String resetpassword(@RequestParam int userid){
-        return "sucess";
+    public String changeuserstatus(@RequestParam Long userid){
+        User user;
+        try{
+            user=userRepository.findById(userid).get();
+            user.setEnable(!user.isEnabled());
+            userRepository.save(user);
+        }catch(Exception e){
+            return "fail";
+        };
+        return "success";
+    }
+
+    @PostMapping(path="reset",params={"userid"})
+    @ResponseBody
+    public String resetuserpassword(@RequestParam Long userid){
+        User user;
+        try{
+            user=userRepository.findById(userid).get();
+            user.setPassword(passwordEncoder.encode("123456"));
+            userRepository.save(user);
+        }catch(Exception e){
+            return "fail";
+        };
+        return "success";
     }
 }

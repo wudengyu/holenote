@@ -8,6 +8,12 @@
 <body>
     <header th:replace="~{base::header}"></header>
     <h2>用户管理</h2>
+    <div class="toast d-flex align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+        <button type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
     <div class="container-md mt-3">
         <form method="POST" name="query" class="row g-3" th:action="@{/manage/user}" th:object="${queryform}">
             <div class="col-auto">
@@ -50,6 +56,7 @@
                             <th>真实姓名</th>
                             <th>联系电话</th>
                             <th>状态</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tr th:each="user:${users}" th:data="${user.id}">
@@ -58,10 +65,14 @@
                         <td th:text="${user.organization.name}"></td>
                         <td th:text="${user.realname}"></td>
                         <td th:text="${user.telephone}"></td>
-                        <td >
+                        <td>
                             <div class="form-check form-switch">
-                                <input type="checkbox" class="form-check-input" th:value="${user.id}" th:checked="${user.enabled}">
+                                <input type="checkbox" class="form-check-input" th:value="${user.id}"
+                                    th:checked="${user.enabled}">
                             </div>
+                        </td>
+                        <td>
+                            <button type="button" name="reset" class="btn btn-link text-dark" th:value="${user.id}">重置密码</button>
                         </td>
                     </tr>
                 </table>
@@ -82,9 +93,42 @@
     </div>
     <footer th:replace="~{base::footer}"></footer>
     <script>
-        $('form button[name="page"').click(function(){
+        $('form button[name="page"').click(function () {
             $('form[name="query"] input[name="page"]').val($(this).val());
             $('form[name="query"]').submit();
+        });
+        $('form .form-check-input').click(function () {
+            var success = false;
+            $.ajax({
+                url: "user/switch",
+                method: "post",
+                data: {
+                    userid: $(this).val(),
+                },
+                dataType: "text",
+                async: false,
+                success: function (result) {
+                    console.log("return result :"+result);
+                    if (result == "success")
+                        success = true;
+                }
+            });
+            return success;
+        });
+        $('form button[name="reset"]').click(function () {
+            $.ajax({
+                url: "user/reset",
+                method: "post",
+                data: {
+                    userid: $(this).val(),
+                },
+                dataType: "text",
+                async: false,
+                success: function (result) {
+                    if (result == "success")
+                        alert("密码已重置为123456");
+                }
+            });
         });
     </script>
 </body>
