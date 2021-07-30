@@ -9,7 +9,6 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap-5.0.2.css}">
     <!--/* Per-page placeholder for additional links */-->
     <th:block th:replace="${links}" />
-
 </head>
 
 <body>
@@ -34,13 +33,39 @@
                             <li><a class="dropdown-item" th:href="@{/manage/user}">用户管理</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"> 
+                    <li class="nav-item">
                         <a class="nav-link text-white" th:href="@{/upload}">上传文件</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
+    <aside class="flex-shrink-0 p-3 bg-light float-start" th:fragment="aside">
+        <nav class="navbar navbar-light flex-column">
+            <div class="navbar-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" class="bi me-2" width="30" height="24" fill="currentColor"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
+                </svg>
+                <span>后台管理</span>
+            </div>
+            <ul class="nav nav-pills nav-fill flex-column">
+                <li class="nav-item">
+                    <a class="btn nav-link" th:href="@{/}">站点主页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn nav-link" th:href="@{/manage/organization}">组织维护</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn nav-link" th:href="@{/manage/user}">用户管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn nav-link" th:href="@{/manage/changepassword}">修改口令</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
     <footer th:fragment="footer">
         <script th:src="@{/js/bootstrap-5.0.2.bundle.js}"></script>
         <script th:src="@{/js/jquery-3.6.0.js}"></script>
