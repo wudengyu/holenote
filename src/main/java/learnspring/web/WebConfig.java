@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -77,5 +78,13 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/manage").setViewName("manage/managehome");
     }
+
+    /*
+    @Bean
+    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(){
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter=new MappingJackson2HttpMessageConverter();
+        return mappingJackson2HttpMessageConverter;
+    }
+    */
 
 }
