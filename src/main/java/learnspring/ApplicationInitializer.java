@@ -6,14 +6,14 @@ import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import learnspring.business.BusinessConfig;
-import learnspring.security.SecurityConfig;
+import learnspring.security.MultiHttpSecurityConfig;
 import learnspring.web.WebConfig;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { BusinessConfig.class, SecurityConfig.class };
+		return new Class<?>[] { BusinessConfig.class, MultiHttpSecurityConfig.class };
 	}
 
 	@Override
