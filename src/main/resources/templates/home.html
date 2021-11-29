@@ -5,6 +5,7 @@
 <body>
     <header th:replace="base::header"></header>
     <h2>Hello World!</h2>
+    <span th:text="${#httpServletRequest.remoteUser}"></span>
     <a th:href="@{/logout}">Logout</a>
     <footer th:replace="base::footer">
     </footer>

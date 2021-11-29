@@ -34,27 +34,15 @@ public class MultiHttpSecurityConfig{
 
     @Configuration
     @Order(1)                                                        
-	public static class StaticWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter{
-        
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                .authorizeRequests()
-                .antMatchers("/images/**","/css/**","/js/**","/registration")
-                .permitAll()
-            ;
-        }
-    }
-
-    @Configuration
-    @Order(2)                                                        
 	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter{
 
         protected void configure(HttpSecurity http) throws Exception {
             http
-                .authorizeRequests(authorize->authorize.antMatchers("/api/**").authenticated())
+                .antMatcher("/api/**")
+                .authorizeRequests(authorize->authorize.anyRequest().authenticated())
                 .httpBasic()
                     .and()
-                .csrf()
+                .csrf() 
                     .disable()
             ;
         }
@@ -72,13 +60,15 @@ public class MultiHttpSecurityConfig{
 		protected void configure(HttpSecurity http) throws Exception {
 			http
                 .authenticationProvider(loginAuthenticationProvider())
-				.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
+                .authorizeRequests(authorize->authorize.antMatchers("/images/**","/css/**","/js/**","/registration","/login").permitAll())
+                .authorizeRequests(authorize->authorize.anyRequest().authenticated())
                 .formLogin()
                     .loginPage("/login")
                 .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/")
+
             ;
 		}
 	}
